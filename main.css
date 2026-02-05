@@ -1,0 +1,342 @@
+:root {
+            --primary: #4a4ce9;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            /* --bg-gradient: linear-gradient(135deg, #3858e6 0%, #4d1585 100%); */
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+
+        body {
+            background: var(--bg-gradient);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND ANIMATION --- */
+        .bubbles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(0, 100, 214, 0.8);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            animation: rise 15s infinite ease-in;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+        }
+
+        /* --- APP MAIN CARD --- */
+        .app-shell {
+    width: 90%;
+    max-width: 1000px;
+    height: 85vh;
+
+    /* GLASS BASE */
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.35),
+        rgba(255, 255, 255, 0.08)
+    );
+
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 30px;
+
+    display: flex;
+    overflow: hidden;
+
+    /* DEPTH */
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+
+    position: relative;
+    z-index: 10;
+}
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 260px;
+            background: rgba(255, 255, 255, 0.5);
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .sidebar h2{
+            color: #4a4ce9;
+            font-size: 16px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            opacity: 0.5;
+            margin: 0;
+        }
+
+        .logo {
+            
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 40px;
+            letter-spacing: -1px;
+        }
+
+        .nav-item {
+            padding: 14px 20px;
+            border-radius: 16px;
+            color: var(--text-muted);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 10px 20px var(--primary-glow);
+        }
+
+        .nav-count {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+        }
+        .active .nav-count { background: rgba(255,255,255,0.2); }
+
+        /* --- CONTENT AREA --- */
+        .main-container {
+            flex: 1;
+            padding: 60px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section{
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .date-display{
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 25px;
+        }
+
+        .header-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        /* --- INPUT BAR --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 18px 24px;
+            border-radius: 18px;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 1.01rem;
+            font-weight: 500;
+            outline: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: all 0.3s;
+        }
+
+        .task-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 10px 40px var(--primary-glow);
+        }
+
+        /* --- TASK LIST --- */
+        .task-list { list-style: none; }
+
+        .task-item {
+            background: rgba(255, 255, 255, 0.7);
+            margin-bottom: 12px;
+            padding: 16px 20px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+            animation: slideIn 0.4s ease forwards;
+        }
+        
+        @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .task-item:hover {
+            transform: scale(1.02);
+            border-color: var(--border-light);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .checkbox {
+            width: 24px; height: 24px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            transition: all 0.2s;
+        }
+
+        .checkbox:checked {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .checkbox:checked::after {
+            content: '✓'; color: white; position: absolute;
+            left: 50%; top: 50%; transform: translate(-50%, -50%);
+            font-size: 14px; font-weight: bold;
+        }
+
+        .task-text { flex: 1; font-weight: 500; font-size: 1rem; }
+        .completed .task-text { text-decoration: line-through; color: var(--text-muted); opacity: 0.6; }
+
+        .del-btn {
+            background: #fff1f2;
+            color: #f43f5e;
+            border: none;
+            width: 32px; height: 32px;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+
+        .task-item:hover .del-btn { opacity: 1; }
+
+        .empty-msg { text-align: center; color: var(--text-muted); margin-top: 50px; }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .app-shell { width: 95%; height: 90vh; }
+            .main-container { padding: 30px; }
+        }
+
+
+        /* --- RESPONSIVENESS --- */
+
+/* 1. Laptop/Large Screens (Optimizing the Card size) */
+@media (min-width: 1400px) {
+    .app-shell {
+        height: 80vh; /* Looks better centered on very large monitors */
+        max-width: 1200px;
+    }
+}
+
+/* 2. Tablets (Adjusting the split ratio) */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 240px; /* Slimmer sidebar for tablets */
+        padding: 30px 15px;
+    }
+    .main-container {
+        padding: 40px;
+    }
+}
+
+/* 3. Small Tablets & Landscape Phones (Stacked Layout) */
+@media (max-width: 768px) {
+    .app-shell {
+        flex-direction: column; /* Stack sidebar on top of content or hide it */
+        height: 95vh;
+        width: 95%;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row; /* Horizontal menu for tablets */
+        overflow-x: auto;
+        padding: 15px 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .logo { margin-bottom: 0; margin-right: 20px; font-size: 1.2rem; }
+    
+    .nav-item { padding: 8px 15px; white-space: nowrap; }
+
+    .main-container { padding: 30px 20px; }
+}
+
+/* 4. Mobile Phones (Full-screen Experience) */
+@media (max-width: 480px) {
+    body {
+        padding: 0; /* Remove body padding so app goes edge-to-edge */
+        align-items: flex-start;
+    }
+
+    .app-shell {
+        height: 100vh;
+        border-radius: 0; /* Remove rounded corners for mobile 'web app' feel */
+        border: none;
+    }
+
+    .header-section h2 {
+        font-size: 1.8rem; /* Smaller title for mobile */
+    }
+
+    .task-input {
+        padding: 14px 18px;
+        font-size: 0.95rem;
+    }
+
+    .task-item {
+        padding: 12px 15px;
+        border-radius: 12px;
+    }
+
+    /* Hide the delete button by default on mobile since there is no 'hover' */
+    .del-btn {
+        opacity: 1; 
+        width: 28px;
+        height: 28px;
+    }
+}

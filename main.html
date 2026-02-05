@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster | Achieve More</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <div class="bubbles" id="bubble-container"></div>
+
+    <div class="app-shell">
+        <aside class="sidebar" id="sidebar">
+            <div id="welcomeText" class="logo"></div>
+            <div class="nav-item active" data-view="today">Today <span class="nav-count" id="count-today">0</span></div>
+            <div class="nav-item" data-view="completed">Completed <span class="nav-count" id="count-comp">0</span></div>
+            <h2>Created by Shivansh</h2>
+        </aside>
+
+        <main class="main-container">
+            <div class="header-section">
+                <h2 id="view-title">Today's Focus</h2>
+                <span class="date-display"></span>
+            </div>
+
+            <form class="input-group" id="todo-form">
+                <input type="text" id="todo-input" class="task-input" placeholder="Type a task and press Enter..." autocomplete="off">
+            </form>
+
+            <ul class="task-list" id="task-list"></ul>
+        </main>
+    </div>
+    <script src="main.js"></script>
+
+    
+</body>
+</html>
