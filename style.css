@@ -1,321 +1,169 @@
- :root {
-            --primary: #5D7CF3;
-            --primary-dark: #4A67D6;
-            --bg-light: #F8FAFC;
-            --text-main: #1E293B;
-            --text-muted: #64748B;
-            --white: #FFFFFF;
-            --nav-height: 70px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* --- Navbar Styles --- */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: var(--nav-height);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px); /* Glassmorphism effect */
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            width: 90%;
-            max-width: 1200px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            background: var(--primary);
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 8px;
-            transition: transform 0.2s;
-            cursor: pointer;
-        }
-
-        .nav-cta:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- Hero & Content --- */
-        .hero {
-            padding: calc(var(--nav-height) + 80px) 20px 60px;
-            max-width: 800px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        #subtitle {
-            
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #7B91FF 0%, #5D7CF3 100%);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(93, 124, 243, 0.3);
-            transition: all 0.2s ease;
-            display: inline-block;
-            margin-bottom: 80px;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 25px rgba(93, 124, 243, 0.4);
-        }
-
-        .main-video {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -1; /* background ke liye */
-        }
-   
-        /* Video itself */
-        .main-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;   /* MOST IMPORTANT */
-        }
-            
-         .simple-footer {
-    text-align: center;
-    padding: 15px 10px;
-    font-size: 18px;
-    color: #64748B;
-    background: #F8FAFC;
-    border-top: 1px solid #E2E8F0;
+:root{
+  --primary: #5D7CF3;
+  --primary-dark: #4A67D6;
+  --bg-light: #ffffff;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --white: #FFFFFF;
+  --nav-height: 70px;
+  --max-width: 1200px;
 }
 
-.simple-footer span {
-    color: #5D7CF3;
-    font-weight: 600;
-}
-   
-
-
-       
-        
-
-        /* --- Responsive Design --- */
-        @media (max-width: 850px) {
-            .nav-links { display: none; } /* Simplified for demo, usually use a hamburger menu */
-            .mockup-content { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
-        }
-
-/* Hide overlay initially */
-/* Overlay */
-.login-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(248, 250, 252, 0.85);
-    backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+/* Reset & base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: 'Inter', sans-serif;
+  background:var(--bg-light);
+  color:var(--text-main);
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  -webkit-font-smoothing:antialiased;
 }
 
-.login-overlay.show {
-    opacity: 1;
-    pointer-events: auto;
+/* Navbar */
+.nav-container{
+  width:90%;
+  max-width:var(--max-width);
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+}
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:var(--nav-height);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.9);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+  z-index:1000;
+  backdrop-filter:blur(6px);
+}
+.logo{
+  font-size:1.5rem;
+  font-weight:800;
+  color:var(--primary);
+  text-decoration:none;
+  letter-spacing:-1px;
+}
+.nav-links{ display:flex; gap:24px; align-items:center; }
+.nav-cta{
+  background:var(--primary);
+  color:var(--white);
+  padding:8px 18px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  border: none;
 }
 
-/* Card */
-.login-card {
-    width: 360px;
-    height: 400px;
-    background: #ffffff;
-    padding: 32px 28px;
-    border-radius: 16px;
-    box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.08),
-        0 8px 16px rgba(0, 0, 0, 0.05);
-    position: relative;
-    text-align: center;
+/* Hero */
+.hero{
+  padding: calc(var(--nav-height) + 72px) 20px 60px;
+  max-width:900px;
+  width:100%;
+  text-align:center;
+  z-index:2;
+}
+h1{
+  font-size:clamp(2rem, 5vw, 3.6rem);
+  font-weight:800;
+  line-height:1.08;
+  margin-bottom:18px;
+}
+#subtitle{
+  font-size:clamp(1rem, 2.2vw, 1.25rem);
+  color:var(--text-muted);
+  margin-bottom:34px;
+}
+.cta-button{
+  background:linear-gradient(135deg,#7B91FF 0%,#5D7CF3 100%);
+  color:var(--white);
+  padding:14px 36px;
+  border-radius:999px;
+  font-weight:600;
+  font-size:1.05rem;
+  border:none;
+  cursor:pointer;
 }
 
-/* Close button */
-.close-btn {
-    position: absolute;
-    top: 14px;
-    right: 16px;
-    font-size: 22px;
-    color: #94A3B8;
-    cursor: pointer;
-    transition: color 0.2s ease;
+/* Footer */
+.simple-footer{
+  text-align:center;
+  padding:18px 12px;
+  font-size:0.95rem;
+  color:var(--text-muted);
+  width:100%;
+  margin-top:auto;
 }
 
-.close-btn:hover {
-    color: #1E293B;
+/* Login overlay */
+.login-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(248,250,252,0.85);
+  backdrop-filter:blur(6px);
+  z-index:9999;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
+.login-overlay.show{ opacity:1; pointer-events:auto }
+.login-card{
+  width:380px;
+  max-width:92%;
+  background:#fff;
+  padding:32px;
+  border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,0.06);
+  position:relative;
+  text-align:center;
+  border: 1px solid rgb(16, 168, 238);
+}
+.login-card p{
+  margin-bottom: 20px;
+}
+.close-btn{
+  position:absolute;
+  top:12px;
+  right:14px;
+  font-size:22px;
+  color:#94A3B8;
+  cursor:pointer;
+  background:none;
+  border:none;
+}
+.login-card input{
+  width:100%;
+  padding:12px 14px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #E2E8F0;
+  font-size:0.95rem;
+  outline:none;
+}
+.login-btn{
+  width:100%;
+  padding:12px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:0.98rem;
+  font-weight:600;
+  cursor:pointer;
 }
 
-/* Headings */
-.login-card h2 {
-    margin-top: 40px;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 6px;
-    color: #1E293B;
-}
-
-.login-card p {
-    font-size: 14px;
-    color: #64748B;
-    margin-bottom: 24px;
-}
-
-/* Inputs */
-.login-card input {
-    width: 100%;
-    padding: 12px 14px;
-    margin-bottom: 14px;
-    border-radius: 8px;
-    border: 1px solid #CBD5E1;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.2s ease, box-shadow 0.2s ease;
-}
-
-.login-card input:focus {
-    border-color: #5D7CF3;
-    box-shadow: 0 0 0 3px rgba(93, 124, 243, 0.15);
-}
-
-/* Button */
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    background: #5D7CF3;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.login-btn:hover {
-    background: #4A67D6;
-    transform: translateY(-1px);
-    box-shadow: 0 10px 20px rgba(93, 124, 243, 0.35);
-}
-
-.login-btn:active {
-    transform: translateY(0);
-    box-shadow: none;
-}
-
-/* --- Media Queries --- */
-
-/* For tablets and small screens */
-@media (max-width: 480px) {
-    .login-card {
-        width: 90%; /* Let the card take up most of the screen width */
-        height: auto; /* Allow height to adjust based on content */
-        padding: 40px 24px 32px; /* More vertical room for touch targets */
-        min-height: 380px;
-    }
-
-    .login-card h2 {
-        font-size: 20px; /* Slightly smaller text for mobile */
-        margin-top: 20px;
-    }
-
-    .close-btn {
-        top: 16px;
-        right: 20px;
-        font-size: 26px; /* Larger hit area for thumbs */
-    }
-
-    .login-btn {
-        padding: 14px; /* Easier to tap on mobile */
-    }
-}
-
-/* For landscape mode on phones (prevents height overflow) */
-@media (max-height: 450px) and (orientation: landscape) {
-    .login-overlay {
-        align-items: flex-start; /* Don't center vertically so user can scroll */
-        padding: 20px 0;
-        overflow-y: auto;
-    }
-
-    .login-card {
-        margin: auto;
-        height: auto;
-    }
-}
+/* Small helper */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
