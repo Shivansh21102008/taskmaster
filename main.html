@@ -1,39 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskMaster | Achieve More</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TaskMaster — Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
+  <div class="bubbles" id="bubble-container" aria-hidden="true"></div>
 
-    <div class="bubbles" id="bubble-container"></div>
+  <div class="app-shell" role="application" aria-label="TaskMaster application">
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Sidebar">
+      <div id="welcomeText" class="logo" tabindex="0">Hi</div>
+      <div class="sidebar-date" id="sidebar-date" aria-live="polite"></div>
 
-    <div class="app-shell">
-        <aside class="sidebar" id="sidebar">
-            <div id="welcomeText" class="logo"></div>
-            <div class="nav-item active" data-view="today">Today <span class="nav-count" id="count-today">0</span></div>
-            <div class="nav-item" data-view="completed">Completed <span class="nav-count" id="count-comp">0</span></div>
-            <h2>Created by Shivansh</h2>
-        </aside>
+      <button class="nav-item active" data-view="today" type="button">Today <span class="nav-count" id="count-today">0</span></button>
+      <button class="nav-item" data-view="completed" type="button">Completed <span class="nav-count" id="count-comp">0</span></button>
 
-        <main class="main-container">
-            <div class="header-section">
-                <h2 id="view-title">Today's Focus</h2>
-                <span class="date-display"></span>
-            </div>
+      <button class="nav-item" id="toggle-dark" type="button" aria-pressed="false">Dark Mode <span id="dark-icon">🌙</span></button>
+    </aside>
 
-            <form class="input-group" id="todo-form">
-                <input type="text" id="todo-input" class="task-input" placeholder="Type a task and press Enter..." autocomplete="off">
-            </form>
+    <main class="main-container">
+      <div class="header-section">
+        <button class="menu-toggle" id="menu-toggle" aria-expanded="false">☰</button>
+        <h2 id="view-title">Today's Focus</h2>
+      </div>
 
-            <ul class="task-list" id="task-list"></ul>
-        </main>
-    </div>
-    <script src="main.js"></script>
+      <form class="input-group" id="todo-form" aria-label="Add task">
+        <input type="text" id="todo-input" class="task-input" placeholder="Type a task and press Enter..." autocomplete="off" aria-label="Task text">
+      </form>
 
-    
+      <ul class="task-list" id="task-list" role="list" aria-live="polite"></ul>
+    </main>
+  </div>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
