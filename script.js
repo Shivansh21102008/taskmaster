@@ -1,58 +1,73 @@
- const text = "A clean and powerful way to manage tasks and keep your team in sync.";
-    const speed = 50;
-    const delay = 1200; // typing ke baad rukne ka time
+// script.js — login + typewriter (index.html)
 
-    let index = 0;
-    const subtitle = document.getElementById("subtitle");
+document.addEventListener('DOMContentLoaded', () => {
+  // Typewriter
+  const text = "A clean and powerful way to manage tasks and keep your team in sync.";
+  const speed = 40;
+  const pauseAfter = 1200;
+  let idx = 0;
+  const subtitle = document.getElementById('subtitle');
 
-    function typeWriter() {
-        if (index < text.length) {
-            subtitle.textContent += text.charAt(index);
-            index++;
-            setTimeout(typeWriter, speed);
-        } else {
-            setTimeout(resetText, delay);
-        }
+  function type() {
+    if (!subtitle) return;
+    if (idx < text.length) {
+      subtitle.textContent += text.charAt(idx++);
+      setTimeout(type, speed);
+    } else {
+      setTimeout(() => {
+        subtitle.textContent = '';
+        idx = 0;
+        type();
+      }, pauseAfter);
     }
+  }
+  type();
 
-    function resetText() {
-        subtitle.textContent = "";
-        index = 0;
-        typeWriter();
+  // Overlay elements
+  const overlay = document.getElementById('loginOverlay');
+  const openLoginBtns = [document.getElementById('openLogin'), document.getElementById('openFromCta')];
+  const closeBtn = document.getElementById('closeLogin');
+  const loginBtn = document.getElementById('loginSubmit');
+  const nameInput = document.getElementById('userName');
+  const emailInput = document.getElementById('userEmail');
+
+  function showOverlay() {
+    overlay.classList.add('show');
+    overlay.setAttribute('aria-hidden', 'false');
+    nameInput.focus();
+  }
+  function hideOverlay() {
+    overlay.classList.remove('show');
+    overlay.setAttribute('aria-hidden', 'true');
+  }
+
+  openLoginBtns.forEach(b => b && b.addEventListener('click', showOverlay));
+  closeBtn && closeBtn.addEventListener('click', hideOverlay);
+
+  // Close on ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('show')) hideOverlay();
+  });
+
+  // Basic validation & login
+  loginBtn.addEventListener('click', () => {
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    if (!name || !email) {
+      alert('Please fill all details');
+      return;
     }
-
-    typeWriter();
-
-
-
-    const overlay = document.getElementById("loginOverlay");
-
-function openLogin() {
-    overlay.classList.add("show");
-}
-
-function closeLogin() {
-    overlay.classList.remove("show");
-}
-
-document.getElementById("openLogin").addEventListener("click", openLogin);
-document.getElementById("openFromCta").addEventListener("click", openLogin);
-document.getElementById("closeLogin").addEventListener("click", closeLogin);
-
-const loginBtn = document.getElementById("loginSubmit");
-
-    loginBtn.addEventListener("click", function () {
-        const name = document.getElementById("userName").value;
-        const email = document.getElementById("userEmail").value;
-
-        if (name === "" || email === "") {
-            alert("Please fill all details");
-            return;
-        }
-        localStorage.setItem("userName", name);
-        window.location.href = "main.html";
-    });
-
-        
-
-        
+    // simple email check
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRe.test(email)) {
+      alert('Please enter a valid email');
+      emailInput.focus();
+      return;
+    }
+    // store and go to app
+    localStorage.setItem('userName', name);
+    localStorage.setItem('taskmaster_user_v1', name); // keep consistent with main.js
+    localStorage.setItem('userEmail', email);
+    window.location.href = 'main.html';
+  });
+});
