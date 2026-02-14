@@ -1,58 +1,51 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaskMaster | Achieve More</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TaskMaster | Sign in</title>
+  <meta name="description" content="TaskMaster — Simple task manager. Login to continue." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">TaskMaster</a>
-            <div class="nav-links">
-                
-                <a id="openLogin" class="nav-cta">Login</a>
-            </div>
-        </div>
-    </nav>
-                
-
-    <section class="hero">
-        <h1>Master Your Day.<br>Achieve More.</h1>
-        <p id="subtitle"></p>
-        <a id="openFromCta" class="cta-button">Get Started for Free</a>
-    </section>
-
-    
-
-   <footer class="simple-footer">
-       Designed & Developed by <span>Shivansh</span>
-    </footer>
-
-
-
-    <div id="loginOverlay" class="login-overlay">
-    <div class="login-card">
-        <span id="closeLogin" class="close-btn">&times;</span>
-
-        <h2>Welcome to TaskMaster</h2>
-        <p>Login to manage your tasks</p>
-
-       <input id="userName" type="text" placeholder="Enter Your Name">
-        <input id="userEmail" type="email" placeholder="Your Email">
-
-        <button id="loginSubmit" class="login-btn">Login</button>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a class="logo" href="#">TaskMaster</a>
+      <div class="nav-links">
+        <button id="openLogin" class="nav-cta" aria-haspopup="dialog">Login</button>
+      </div>
     </div>
-</div>
+  </nav>
 
-
-
-
+  <main class="hero" id="hero" role="main">
+    <h1>Master Your Day.<br>Achieve More.</h1>
+    <p id="subtitle" aria-live="polite"></p>
+    <button id="openFromCta" class="cta-button">Get Started for Free</button>
    
-<script src="script.js"></script>
-</body>
+  </main>
 
+  <footer class="simple-footer" role="contentinfo">
+    Designed &amp; Developed by <span>Shivansh</span>
+  </footer>
+
+  <!-- LOGIN OVERLAY -->
+  <div id="loginOverlay" class="login-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="login-card" role="document" aria-labelledby="loginTitle">
+      <button id="closeLogin" class="close-btn" aria-label="Close">&times;</button>
+      <h2 id="loginTitle">Welcome to TaskMaster</h2>
+      <p>Login to manage your tasks</p>
+
+      <label for="userName" class="sr-only">Enter your name</label>
+      <input id="userName" name="userName" type="text" placeholder="Enter Your Name" autocomplete="name" aria-required="true">
+
+      <label for="userEmail" class="sr-only">Enter your email</label>
+      <input id="userEmail" name="userEmail" type="email" placeholder="Your Email" autocomplete="email" aria-required="true">
+
+      <button id="loginSubmit" class="login-btn">Login</button>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
